@@ -1,0 +1,121 @@
+[General]
+disable-stun = true
+sni-sniffing = true
+ipv6-vif = auto
+ip-mode = dual
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.18.0.0/15,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32,fc00::/18
+# DNS server
+dns-server = system
+allow-udp-proxy = true
+allow-wifi-access = true
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+proxy-test-url = https://www.gstatic.com/generate_204
+internet-test-url = http://wifi.vivo.com.cn/generate_204
+test-timeout = 3
+interface-mode = auto
+resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
+ssid-trigger = "default":rule, "cellular":rule,"第一个Wi-Fi名称":DIRECT,"第二个Wi-Fi名称":DIRECT
+
+[Remote Filter]
+US-Filter = NameKeyword, FilterKey = "美国"
+MY-Filter = NameKeyword, FilterKey = "马来西亚"
+JP-Filter = NameKeyword, FilterKey = "日本"
+SG-Filter = NameKeyword, FilterKey = "新加坡"
+TW-Filter = NameKeyword, FilterKey = "台湾"
+HK-Filter = NameKeyword, FilterKey = "香港"
+ALL-Filter = NameRegex, FilterKey = ".*"
+
+[Proxy Group]
+# 节点选项
+Default = select,Auto,HK,US,MY,SG,Manual,JP,TW,img-url = https://raw.githubusercontent.com/Orz-3/mini/refs/heads/master/Color/Kuai.png
+AI-Service = select,Default,Auto,HK,US,JP,MY,SG,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/ChatGPT.png
+Github = select,Default,Auto,HK,US,MY,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/GitHub.png
+Telegram = select,Default,Auto,HK,US,MY,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Telegram.png
+Streaming-Media = select,Default,Auto,HK,US,MY,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Netflix.png
+Auto = url-test,ALL-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Speedtest.png
+HK = url-test,HK-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Hong_Kong.png
+US = url-test,US-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/United_States.png
+MY = url-test,MY-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Taiwan.png
+SG = url-test,SG-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Singapore.png
+JP = url-test,JP-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Japan.png
+TW = url-test,TW-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Malaysia.png
+Manual = url-test,ALL-Filter,interval = 600,img-url = pencil.circle.fill
+
+[Rule]
+DEST-PORT,5201,DIRECT
+DOMAIN-SUFFIX,migucloud.com,DIRECT
+DOMAIN-SUFFIX,ghfast.top,DIRECT
+DOMAIN-SUFFIX,services.googleapis.cn,Default
+DOMAIN-SUFFIX,ottiptv.cc,DIRECT
+DOMAIN-SUFFIX,cn,DIRECT
+DOMAIN-SUFFIX,uhdnow.com,DIRECT
+DOMAIN-SUFFIX,emby.bid,DIRECT
+DOMAIN-SUFFIX,emby.men,DIRECT
+DOMAIN-SUFFIX,emby.date,DIRECT
+DOMAIN-SUFFIX,emby.loan,DIRECT
+DOMAIN-SUFFIX,emby.trade,DIRECT
+DOMAIN-SUFFIX,uuuoo.cc,DIRECT
+DOMAIN-SUFFIX,trkp.cc,DIRECT
+FINAL,Default
+
+[Remote Rule]
+https://rule.kelee.one/Loon/GitHub.lsr, policy=Github, tag=GitHub, enabled=true
+https://kelee.one/Tool/Loon/Lsr/AI.lsr, policy=AI-Service, tag=AI, enabled=true
+https://rule.kelee.one/Loon/Telegram.lsr, policy=Telegram, tag=Telegram, enabled=true
+https://rule.kelee.one/Loon/BiliBili.lsr, policy=DIRECT, tag=BiliBili, enabled=true
+https://rule.kelee.one/Loon/Global.lsr, policy=Default, tag=GFW, enabled=true
+https://kelee.one/Tool/Loon/Lsr/LAN_SPLITTER.lsr, policy=DIRECT, tag=LAN, enabled=true
+https://kelee.one/Tool/Loon/Lsr/REGION_SPLITTER.lsr, policy=DIRECT, tag=CNIP, enabled=true
+
+[Rewrite]
+^https?:\/\/(www.)?(g|google)\.cn 302 https://www.google.com
+
+[Plugin]
+https://kelee.one/Tool/Loon/Lpx/Cainiao_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Block_HTTPDNS.lpx, pin=true, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, pin=true, enabled=true
+https://kelee.one/Tool/Loon/Lpx/DiDi_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Damai_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/ZhuanZhuan_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Zhihu_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/YouKu_Video_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/RedPaper_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/XiaoHeiHe_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/WexinMiniPrograms_Remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weibo_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Tencent_Video_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Taobao_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/smzdm_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/QQKSong_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/QiDian_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/PiPiXia_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/PinDuoDuo_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/DubbingShow_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/MangoTV_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/TV_Assistant_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/CoolApk_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/QuarkBrowser_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Remove_ads_by_keli.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/JD_Price.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/JD_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Amap_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/FenBi_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Douyu_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/DouBan_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Bilibili_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BaiduSearchWebpage_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BaiduNetDisk_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Tieba_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/iQiYi_Video_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/QQMusic_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/12306_remove_ads.lpx, enabled=true
+
+[Mitm]
+ca-p12 = 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
+ca-passphrase = 3V83BT4U
+skip-server-cert-verify = false
