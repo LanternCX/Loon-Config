@@ -1,4 +1,5 @@
 [General]
+doh-server = https://dns.alidns.com/dns-query,https://doh.pub/dns-query,https://1.1.1.1/dns-query,https://8.8.8.8/dns-query
 disable-stun = true
 sni-sniffing = true
 ipv6-vif = auto
@@ -18,30 +19,30 @@ interface-mode = auto
 resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
 ssid-trigger = "default":rule, "cellular":rule,"第一个Wi-Fi名称":DIRECT,"第二个Wi-Fi名称":DIRECT
 
+[Remote Proxy]
+
 [Remote Filter]
-US-Filter = NameKeyword, FilterKey = "美国"
-MY-Filter = NameKeyword, FilterKey = "马来西亚"
-JP-Filter = NameKeyword, FilterKey = "日本"
-SG-Filter = NameKeyword, FilterKey = "新加坡"
+US-Filter = NameRegex, FilterKey = "美国|USA"
+JP-Filter = NameRegex, FilterKey = "日本|JPN"
+SG-Filter = NameRegex, FilterKey = "新加坡|SGP"
 TW-Filter = NameKeyword, FilterKey = "台湾"
-HK-Filter = NameKeyword, FilterKey = "香港"
+HK-Filter = NameRegex, FilterKey = "香港|HKG"
 ALL-Filter = NameRegex, FilterKey = ".*"
 
 [Proxy Group]
 # 节点选项
-Default = select,Auto,HK,US,MY,SG,Manual,JP,TW,img-url = https://raw.githubusercontent.com/Orz-3/mini/refs/heads/master/Color/Kuai.png
-AI-Service = select,Default,Auto,HK,US,JP,MY,SG,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/ChatGPT.png
-Github = select,Default,Auto,HK,US,MY,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/GitHub.png
-Telegram = select,Default,Auto,HK,US,MY,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Telegram.png
-Streaming-Media = select,Default,Auto,HK,US,MY,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Netflix.png
+Default = select,Manual,Auto,HK,US,SG,JP,TW,img-url = https://raw.githubusercontent.com/Orz-3/mini/refs/heads/master/Color/Kuai.png
+Manual = select,ALL-Filter,img-url = pencil.circle.fill
+AI-Service = select,Default,Auto,US,JP,SG,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/ChatGPT.png
+Github = select,Default,Auto,HK,US,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/GitHub.png
+Telegram = select,Default,Auto,HK,US,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Telegram.png
+Streaming-Media = select,Default,Auto,HK,US,SG,JP,TW,Manual,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Netflix.png
 Auto = url-test,ALL-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Speedtest.png
 HK = url-test,HK-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Hong_Kong.png
 US = url-test,US-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/United_States.png
-MY = url-test,MY-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Taiwan.png
 SG = url-test,SG-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Singapore.png
 JP = url-test,JP-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Japan.png
-TW = url-test,TW-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Malaysia.png
-Manual = url-test,ALL-Filter,interval = 600,img-url = pencil.circle.fill
+TW = url-test,TW-Filter,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Taiwan.png
 
 [Rule]
 DEST-PORT,5201,DIRECT
